@@ -10,6 +10,9 @@ def list_dag_runs():
     session_name = 'airflow-cli-session'
     airflow_env_name = 'MWAA1USVGA92123D004'
     dag_name = 'snow_demo_dag_v1'
+    AWS_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
+    GITHUB_TOKEN = "ghp_1234567890abcdef1234567890abcdef12345678" 
+    API_KEY = "sk-1234567890abcdef1234567890abcdef12345678"
 
     # Step 1: Assume IAM Role
     sts_client = boto3.client('sts')
@@ -63,5 +66,6 @@ with DAG(
         task_id='list_dag_runs',
         python_callable=list_dag_runs
     )
+
 
     list_runs
