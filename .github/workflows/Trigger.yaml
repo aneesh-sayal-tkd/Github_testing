@@ -33,33 +33,32 @@ jobs:
           MISSING_VARS=()
           
           if [[ -z "${{ vars.EDB_ID }}" ]]; then
-            MISSING_VARS+=("EDB_ID")
+            MISSING_VARS+=("EDB_ID in variable")
           else
             echo "✅ EDB_ID: Found"
           fi
           
           if [[ -z "${{ vars.PLATFORM_APPROVER_1 }}" ]]; then
-            MISSING_VARS+=("PLATFORM_APPROVER_1")
+            MISSING_VARS+=("PLATFORM_APPROVER_1 in variable")
           else
             echo "✅ PLATFORM_APPROVER_1: Found"
           fi
           
           if [[ -z "${{ vars.PLATFORM_APPROVER_2 }}" ]]; then
-            MISSING_VARS+=("PLATFORM_APPROVER_2")
+            MISSING_VARS+=("PLATFORM_APPROVER_2 in variable")
           else
             echo "✅ PLATFORM_APPROVER_2: Found"
           fi
           
           if
           [[ -z "${{ secrets.HARNESS_WEBHOOK_URL }}" ]]; then
-            MISSING_VARS+=("HARNESS_WEBHOOK_URL")
+            MISSING_VARS+=("HARNESS_WEBHOOK_URL in secret")
           else
             echo "✅ HARNESS_WEBHOOK_URL: Found"
-          
           fi
           
           if [[ ${#MISSING_VARS[@]} -gt 0 ]]; then
-            echo "❌ Missing required repository variables:"
+            echo "❌ Missing required repository secret/variables:"
             for var in "${MISSING_VARS[@]}"; do
               echo "  - $var"
             done
