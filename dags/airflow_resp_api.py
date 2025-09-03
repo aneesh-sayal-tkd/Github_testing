@@ -4,6 +4,7 @@ from datetime import datetime
 import boto3
 import requests
 import base64
+import os
 
 def list_dag_runs():
     mwaa = boto3.client('mwaa')
@@ -43,3 +44,4 @@ with DAG(
     )
 
     list_runs
+
