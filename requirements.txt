@@ -1,0 +1,12 @@
+apache-airflow-providers-databricks
+apache-airflow-providers-common-sql
+apache-airflow-providers-fab
+databricks-sql-connector
+aiohttp
+requests
+xmltodict
+airflow-mcd
+apache-airflow-providers-ssh
+apache-airflow-providers-amazon
+apache-airflow
+apache-airflow-providers-common-compat
