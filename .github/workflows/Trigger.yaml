@@ -15,7 +15,7 @@ permissions:
   issues: write
 jobs:
 # ----------------------------------------------------------------------
-# 1. Light validation of PR source/target + CODEOWNERS file + Required Variables
+# 1. Light validation of PR source/target + CODEOWNERS file + Required Secrets/Variables
 # ----------------------------------------------------------------------
   validate-pr:
     name: validate-pr
@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Validate required repository variables
+      - name: Validate required repository variables and secrets
         run: |
           echo "🔍 Checking required repository variables..."
           
@@ -48,6 +48,11 @@ jobs:
             MISSING_VARS+=("PLATFORM_APPROVER_2")
           else
             echo "✅ PLATFORM_APPROVER_2: Found"
+          if
+          [[ -z "${{ secrets.HARNESS_WEBHOOK_URL }}" ]]; then
+            MISSING_VARS+=("HARNESS_WEBHOOK_URL")
+          else
+            echo "✅ HARNESS_WEBHOOK_URL: Found"
           fi
           
           if [[ ${#MISSING_VARS[@]} -gt 0 ]]; then
@@ -57,16 +62,17 @@ jobs:
             done
             echo ""
             echo "Please configure these variables in repository settings:"
-            echo "Settings → Secrets and variables → Actions → Variables"
+            echo "Settings → Secrets and variables → Actions → Secrets/Variables"
             echo ""
             echo "Required variables:"
-            echo "- EDB_ID: Database identifier for the deployment"
+            echo "- EDB_ID: Project identifier for the deployment"
             echo "- PLATFORM_APPROVER_1: Username of first platform approver"
             echo "- PLATFORM_APPROVER_2: Username of second platform approver"
+            echo "- HARNESS_WEBHOOK_URL: URL to trigger harness pipeline for deployment"
             exit 1
           fi
           
-          echo "✅ All required repository variables are configured"
+          echo "✅ All required repository secrets/variables are configured"
       
       - name: Enforce allowed branch flow (dev→tst, tst→prd)
         run: |
