@@ -48,11 +48,14 @@ jobs:
             MISSING_VARS+=("PLATFORM_APPROVER_2")
           else
             echo "✅ PLATFORM_APPROVER_2: Found"
+          fi
+          
           if
           [[ -z "${{ secrets.HARNESS_WEBHOOK_URL }}" ]]; then
             MISSING_VARS+=("HARNESS_WEBHOOK_URL")
           else
             echo "✅ HARNESS_WEBHOOK_URL: Found"
+          
           fi
           
           if [[ ${#MISSING_VARS[@]} -gt 0 ]]; then
