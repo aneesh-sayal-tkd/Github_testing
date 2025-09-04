@@ -10,9 +10,8 @@ def list_dag_runs():
     session_name = 'airflow-cli-session'
     airflow_env_name = 'MWAA1USVGA92123D004'
     dag_name = 'snow_demo_dag_v1'
-    AWS_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
-    GITHUB_TOKEN = "ghp_1234567890abcdef1234567890abcdef12345678" 
-    API_KEY = "sk-1234567890abcdef1234567890abcdef12345678"
+    
+    aws_api_key = "AKIAIOSFODNN7EXAMPLE"
 
     # Step 1: Assume IAM Role
     sts_client = boto3.client('sts')
@@ -21,8 +20,6 @@ def list_dag_runs():
         RoleSessionName=session_name
     )
 
-    Github_token = 'ghp_y3N4pM2q9JtZbR7cX8uW5kD0fV1hQ6aL9rT2'
-    Github_pat = 'd7c91f3b6a2e481fa93d5bca4f7e82c0b5a91e3f'
     credentials = assumed_role['Credentials']
 
     # Step 2: Create MWAA client using assumed role credentials
@@ -73,5 +70,6 @@ with DAG(
 
 
     list_runs
+
 
 
