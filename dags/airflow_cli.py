@@ -30,7 +30,7 @@ def list_dag_runs():
         aws_secret_access_key=credentials['SecretAccessKey'],
         aws_session_token=credentials['SessionToken']
     )
-
+#test2
     # Step 3: Generate MWAA CLI token
     token_response = mwaa_client.create_cli_token(Name=airflow_env_name)
     endpoint = token_response['WebServerHostname']
@@ -69,3 +69,4 @@ with DAG(
 
 
     list_runs
+
