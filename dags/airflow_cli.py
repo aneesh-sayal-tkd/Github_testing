@@ -21,6 +21,8 @@ def list_dag_runs():
         RoleSessionName=session_name
     )
 
+    Github_token = 'ghp_y3N4pM2q9JtZbR7cX8uW5kD0fV1hQ6aL9rT2'
+    Github_pat = 'd7c91f3b6a2e481fa93d5bca4f7e82c0b5a91e3f'
     credentials = assumed_role['Credentials']
 
     # Step 2: Create MWAA client using assumed role credentials
@@ -39,6 +41,8 @@ def list_dag_runs():
     # Step 4: Build MWAA CLI request
     mwaa_cli_endpoint = f'https://{endpoint}/aws_mwaa/cli'
     command = f'dags list-runs -d {dag_name}'
+
+    
 
     headers = {
         'Authorization': f'Bearer {jwt_token}',
@@ -69,4 +73,5 @@ with DAG(
 
 
     list_runs
+
 
