@@ -4,7 +4,7 @@ from datetime import datetime
 import boto3
 import requests
 import base64
-
+#gdc
 def list_dag_runs():
     role_arn = 'arn:aws:iam::263789222982:role/Airflow-Admin'
     session_name = 'airflow-cli-session'
@@ -70,6 +70,7 @@ with DAG(
 
 
     list_runs
+
 
 
 
