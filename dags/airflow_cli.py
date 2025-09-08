@@ -4,15 +4,14 @@ from datetime import datetime
 import boto3
 import requests
 import base64
-
+#gdc
 def list_dag_runs():
     role_arn = 'arn:aws:iam::263789222982:role/Airflow-Admin'
     session_name = 'airflow-cli-session'
     airflow_env_name = 'MWAA1USVGA92123D004'
     dag_name = 'snow_demo_dag_v1'
-    AWS_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
-    GITHUB_TOKEN = "ghp_1234567890abcdef1234567890abcdef12345678" 
-    API_KEY = "sk-1234567890abcdef1234567890abcdef12345678"
+    
+    aws_api_key = "AKIAIOSFODNN7EXAMPLE"
 
     # Step 1: Assume IAM Role
     sts_client = boto3.client('sts')
@@ -39,6 +38,8 @@ def list_dag_runs():
     # Step 4: Build MWAA CLI request
     mwaa_cli_endpoint = f'https://{endpoint}/aws_mwaa/cli'
     command = f'dags list-runs -d {dag_name}'
+
+    
 
     headers = {
         'Authorization': f'Bearer {jwt_token}',
@@ -69,4 +70,7 @@ with DAG(
 
 
     list_runs
+
+
+
 
