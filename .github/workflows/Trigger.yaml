@@ -1,4 +1,3 @@
-# app-repo/.github/workflows/branch-protection.yml
 name: Branch Protection (from mono repo)
 
 on:
@@ -24,4 +23,3 @@ jobs:
       SOURCE_BRANCHES: "dev,tst"
     secrets:
       HARNESS_WEBHOOK_URL: ${{ secrets.HARNESS_WEBHOOK_URL }}
-
