@@ -21,5 +21,12 @@ jobs:
     with:
       TARGET_BRANCHES: "tst,prd"
       SOURCE_BRANCHES: "dev,tst"
+      # Pass PR information when triggered by pull_request event
+      pr_number: ${{ github.event.pull_request.number || '' }}
+      head_ref: ${{ github.head_ref || github.ref_name }}
+      base_ref: ${{ github.base_ref || '' }}
+      head_sha: ${{ github.event.pull_request.head.sha || github.sha }}
+      is_pull_request: ${{ github.event_name == 'pull_request' }}
+      event_name: ${{ github.event_name }}
     secrets:
       HARNESS_WEBHOOK_URL: ${{ secrets.HARNESS_WEBHOOK_URL }}
