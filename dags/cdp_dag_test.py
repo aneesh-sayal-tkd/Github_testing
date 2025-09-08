@@ -12,7 +12,7 @@ default_args = {
     'email_on_retry': False,
     'retry': 1,
 }
-
+#hi
 @task(task_id='010-cdp-batch-control-start')
 def start_batch_control():
     return DatabricksSubmitRunOperator(
@@ -186,4 +186,5 @@ with DAG(
     t6 = stop_batch_control()
 
     # Set the task dependencies
+
     t1 >> [t2, t3, t4] >> t5 >> t6    
