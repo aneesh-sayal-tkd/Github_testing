@@ -10,7 +10,7 @@ on:
 
 jobs:
   branch-protection:
-    uses: aneesh-sayal-tkd/Airflow-migration-test/.github/Airflow_cicd.yaml@main
+    uses: aneesh-sayal-tkd/Airflow-migration-test/.github/workflows/branch-protection.yml@main
     with:
       TARGET_BRANCHES: "tst,prd"
       SOURCE_BRANCHES: "dev,tst"
