@@ -1,32 +1,32 @@
-name: Branch Protection (from mono repo)
+# name: Branch Protection (from mono repo)
 
-on:
-  pull_request:
-    branches: [tst, prd]
-    types: [opened, synchronize, ready_for_review, reopened]
-  push:
-    branches: [tst, prd]
+# on:
+#   pull_request:
+#     branches: [tst, prd]
+#     types: [opened, synchronize, ready_for_review, reopened]
+#   push:
+#     branches: [tst, prd]
 
-jobs:
-  branch-protection:
-    uses: aneesh-sayal-tkd/Airflow-migration-test/.github/workflows/branch-protection.yml@main
-    permissions:
-      contents: write
-      pull-requests: write
-      checks: write
-      statuses: write
-      security-events: write
-      actions: read
-      issues: write
-    with:
-      TARGET_BRANCHES: "tst,prd"
-      SOURCE_BRANCHES: "dev,tst"
-      # Pass PR information when triggered by pull_request event
-      pr_number: ${{ github.event.pull_request.number || '' }}
-      head_ref: ${{ github.head_ref || github.ref_name }}
-      base_ref: ${{ github.base_ref || '' }}
-      head_sha: ${{ github.event.pull_request.head.sha || github.sha }}
-      is_pull_request: ${{ github.event_name == 'pull_request' }}
-      event_name: ${{ github.event_name }}
-    secrets:
-      HARNESS_WEBHOOK_URL: ${{ secrets.HARNESS_WEBHOOK_URL }}
+# jobs:
+#   branch-protection:
+#     uses: aneesh-sayal-tkd/Airflow-migration-test/.github/workflows/branch-protection.yml@main
+#     permissions:
+#       contents: write
+#       pull-requests: write
+#       checks: write
+#       statuses: write
+#       security-events: write
+#       actions: read
+#       issues: write
+#     with:
+#       TARGET_BRANCHES: "tst,prd"
+#       SOURCE_BRANCHES: "dev,tst"
+#       # Pass PR information when triggered by pull_request event
+#       pr_number: ${{ github.event.pull_request.number || '' }}
+#       head_ref: ${{ github.head_ref || github.ref_name }}
+#       base_ref: ${{ github.base_ref || '' }}
+#       head_sha: ${{ github.event.pull_request.head.sha || github.sha }}
+#       is_pull_request: ${{ github.event_name == 'pull_request' }}
+#       event_name: ${{ github.event_name }}
+#     secrets:
+#       HARNESS_WEBHOOK_URL: ${{ secrets.HARNESS_WEBHOOK_URL }}
